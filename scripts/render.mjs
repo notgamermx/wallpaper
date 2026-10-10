@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { createServer } from "node:http";
 import { readFile, writeFile, mkdir, mkdtemp } from "node:fs/promises";
 import path from "node:path";
@@ -114,28 +114,66 @@ try {
     `window.loadArtwork = async source => {const img=new Image();img.src=source;await img.decode();return img;};window.exportBlob=blob=>new Promise(resolve=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.readAsDataURL(blob);});`,
   );
   for (const item of catalog) {
-    const result = await run(`(async()=>{
+    if (!process.env.VIDEOS_ONLY) {
+      const result = await run(`(async()=>{
       const image=await loadArtwork(${JSON.stringify(item.source)});const c=document.getElementById('canvas'),x=c.getContext('2d');x.drawImage(image,0,0);
       const small=document.createElement('canvas');small.width=480;small.height=270;small.getContext('2d').drawImage(c,0,0,480,270);
       return {png:c.toDataURL('image/png').split(',')[1],jpg:small.toDataURL('image/jpeg',.86).split(',')[1]};
     })()`);
-    await writeFile(item.image, Buffer.from(result.png, "base64"));
-    await writeFile(item.preview, Buffer.from(result.jpg, "base64"));
+      await writeFile(item.image, Buffer.from(result.png, "base64"));
+      await writeFile(item.preview, Buffer.from(result.jpg, "base64"));
+    }
     if (item.video) {
       const data = await run(`(async()=>{
         const img=await loadArtwork(${JSON.stringify(item.source)});const c=document.getElementById('canvas'),x=c.getContext('2d');
         const stream=c.captureStream(0),track=stream.getVideoTracks()[0];
         const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm;codecs=vp8';
-        const recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:2500000}),parts=[];recorder.ondataavailable=e=>parts.push(e.data);
+        const recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:1800000}),parts=[];recorder.ondataavailable=e=>parts.push(e.data);
         const done=new Promise(resolve=>recorder.onstop=resolve);recorder.start();
+        const preview=document.createElement('canvas');preview.width=320;preview.height=180;const px=preview.getContext('2d'),previews=[];
         const frames=144;
         for(let f=0;f<frames;f++){
           const t=f/frames*Math.PI*2;x.clearRect(0,0,1920,1080);x.drawImage(img,-25+Math.sin(t)*15,-15+Math.cos(t)*10,1970,1110);
+          const category=${JSON.stringify(item.category)},slug=${JSON.stringify(item.slug)};
+          x.save();
+          if(category==='space'||category==='gaming'){
+            for(let i=0;i<45;i++){const a=i*2.399963;const xx=(i*233)%1920+Math.sin(t+a)*13,yy=(i*157)%700+Math.cos(t+a)*10;x.fillStyle='rgba(205,230,255,'+(.15+.35*(.5+.5*Math.sin(t+a)))+')';x.beginPath();x.arc(xx,yy,1+i%2,0,Math.PI*2);x.fill();}
+          }
+          if(category==='anime'&&slug==='rainy-rooftops'){
+            x.strokeStyle='rgba(184,219,237,.26)';x.lineWidth=1.5;
+            for(let i=0;i<90;i++){const xx=(i*239)%1950,yy=((i*173)+f/frames*1080)%1080;x.beginPath();x.moveTo(xx,yy);x.lineTo(xx-12,yy+50);x.stroke();}
+          }else if(category==='anime'){
+            x.fillStyle=slug==='sakura-evening'?'rgba(255,198,215,.65)':'rgba(255,210,165,.4)';
+            for(let i=0;i<24;i++){const xx=((i*179)+f/frames*1920)%1920,yy=(i*117)%1080+Math.sin(t+i)*28;x.beginPath();x.ellipse(xx,yy,slug==='sakura-evening'?6:2,slug==='sakura-evening'?3:2,t+i,0,Math.PI*2);x.fill();}
+          }else if(category==='nature'){
+            x.strokeStyle='rgba(215,238,230,.13)';x.lineWidth=2;
+            for(let i=0;i<9;i++){const yy=690+i*22;x.beginPath();for(let xx=0;xx<=1920;xx+=24){const y=yy+Math.sin(xx/180+t+i)*5;xx?x.lineTo(xx,y):x.moveTo(xx,y);}x.stroke();}
+          }else if(category==='abstract'){
+            const glow=x.createRadialGradient(1400+Math.sin(t)*100,400+Math.cos(t)*50,0,1400+Math.sin(t)*100,400+Math.cos(t)*50,500);glow.addColorStop(0,'rgba(220,230,255,.08)');glow.addColorStop(1,'rgba(220,230,255,0)');x.fillStyle=glow;x.fillRect(0,0,1920,1080);
+          }
+          x.restore();
+          if(f%4===0){px.drawImage(c,0,0,320,180);previews.push(preview.toDataURL('image/png').split(',')[1]);}
           track.requestFrame();await new Promise(resolve=>setTimeout(resolve,1000/24));
         }
-        recorder.stop();await done;track.stop();return exportBlob(new Blob(parts,{type:'video/webm'}));
+        recorder.stop();await done;track.stop();return {video:await exportBlob(new Blob(parts,{type:'video/webm'})),previews};
       })()`);
-      await writeFile(item.video, Buffer.from(data, "base64"));
+      await writeFile(item.video, Buffer.from(data.video, "base64"));
+      const framesDir = path.join(root, ".cache", item.slug);
+      await mkdir(framesDir, { recursive: true });
+      for (let i = 0; i < data.previews.length; i++)
+        await writeFile(
+          path.join(framesDir, `${String(i).padStart(3, "0")}.png`),
+          Buffer.from(data.previews[i], "base64"),
+        );
+      const gif = spawnSync(
+        process.env.PYTHON_PATH || "python",
+        ["scripts/previews.py", framesDir, item.animatedPreview],
+        { encoding: "utf8", windowsHide: true },
+      );
+      if (gif.status !== 0)
+        throw new Error(
+          gif.stderr || "Animated preview export requires Python with Pillow.",
+        );
     }
     console.log(`Exported ${item.name}${item.video ? " + live loop" : ""}`);
   }
@@ -149,7 +187,7 @@ try {
   );
   if (!valid) throw new Error("Export validation failed.");
   console.log(
-    "Verified 25 full-HD images and 5 playable full-HD live wallpapers.",
+    `Verified ${catalog.length} full-HD images and ${catalog.filter((i) => i.video).length} playable full-HD live wallpapers.`,
   );
 } finally {
   if (ws?.readyState === WebSocket.OPEN && send)

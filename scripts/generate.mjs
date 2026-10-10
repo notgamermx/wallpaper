@@ -388,7 +388,8 @@ for (const [category, items] of Object.entries(groups))
       width: W,
       height: H,
       license: "CC0-1.0",
-      ...(i === 0 ? { video: `live/${slug}.webm` } : {}),
+      video: `live/${slug}.webm`,
+      animatedPreview: `previews/${slug}.gif`,
     });
   }
 await writeFile("catalog.json", JSON.stringify(catalog, null, 2) + "\n");

@@ -9,7 +9,8 @@
     "width": 1920,
     "height": 1080,
     "license": "CC0-1.0",
-    "video": "live/alpine-dawn.webm"
+    "video": "live/alpine-dawn.webm",
+    "animatedPreview": "previews/alpine-dawn.gif"
   },
   {
     "name": "Forest mist",
@@ -20,7 +21,9 @@
     "preview": "previews/forest-mist.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/forest-mist.webm",
+    "animatedPreview": "previews/forest-mist.gif"
   },
   {
     "name": "Desert rose",
@@ -31,7 +34,9 @@
     "preview": "previews/desert-rose.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/desert-rose.webm",
+    "animatedPreview": "previews/desert-rose.gif"
   },
   {
     "name": "Quiet coast",
@@ -42,7 +47,9 @@
     "preview": "previews/quiet-coast.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/quiet-coast.webm",
+    "animatedPreview": "previews/quiet-coast.gif"
   },
   {
     "name": "Autumn lake",
@@ -53,7 +60,9 @@
     "preview": "previews/autumn-lake.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/autumn-lake.webm",
+    "animatedPreview": "previews/autumn-lake.gif"
   },
   {
     "name": "Saturn drift",
@@ -65,7 +74,8 @@
     "width": 1920,
     "height": 1080,
     "license": "CC0-1.0",
-    "video": "live/saturn-drift.webm"
+    "video": "live/saturn-drift.webm",
+    "animatedPreview": "previews/saturn-drift.gif"
   },
   {
     "name": "Blue orbit",
@@ -76,7 +86,9 @@
     "preview": "previews/blue-orbit.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/blue-orbit.webm",
+    "animatedPreview": "previews/blue-orbit.gif"
   },
   {
     "name": "Lunar silence",
@@ -87,7 +99,9 @@
     "preview": "previews/lunar-silence.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/lunar-silence.webm",
+    "animatedPreview": "previews/lunar-silence.gif"
   },
   {
     "name": "Violet nebula",
@@ -98,7 +112,9 @@
     "preview": "previews/violet-nebula.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/violet-nebula.webm",
+    "animatedPreview": "previews/violet-nebula.gif"
   },
   {
     "name": "Solar eclipse",
@@ -109,7 +125,9 @@
     "preview": "previews/solar-eclipse.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/solar-eclipse.webm",
+    "animatedPreview": "previews/solar-eclipse.gif"
   },
   {
     "name": "Mint silk",
@@ -121,7 +139,8 @@
     "width": 1920,
     "height": 1080,
     "license": "CC0-1.0",
-    "video": "live/mint-silk.webm"
+    "video": "live/mint-silk.webm",
+    "animatedPreview": "previews/mint-silk.gif"
   },
   {
     "name": "Amber rings",
@@ -132,7 +151,9 @@
     "preview": "previews/amber-rings.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/amber-rings.webm",
+    "animatedPreview": "previews/amber-rings.gif"
   },
   {
     "name": "Indigo flow",
@@ -143,7 +164,9 @@
     "preview": "previews/indigo-flow.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/indigo-flow.webm",
+    "animatedPreview": "previews/indigo-flow.gif"
   },
   {
     "name": "Coral prism",
@@ -154,7 +177,9 @@
     "preview": "previews/coral-prism.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/coral-prism.webm",
+    "animatedPreview": "previews/coral-prism.gif"
   },
   {
     "name": "Ice glass",
@@ -165,7 +190,9 @@
     "preview": "previews/ice-glass.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/ice-glass.webm",
+    "animatedPreview": "previews/ice-glass.gif"
   },
   {
     "name": "Sakura evening",
@@ -177,7 +204,8 @@
     "width": 1920,
     "height": 1080,
     "license": "CC0-1.0",
-    "video": "live/sakura-evening.webm"
+    "video": "live/sakura-evening.webm",
+    "animatedPreview": "previews/sakura-evening.gif"
   },
   {
     "name": "Rainy rooftops",
@@ -188,7 +216,9 @@
     "preview": "previews/rainy-rooftops.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/rainy-rooftops.webm",
+    "animatedPreview": "previews/rainy-rooftops.gif"
   },
   {
     "name": "Summer crossing",
@@ -199,7 +229,9 @@
     "preview": "previews/summer-crossing.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/summer-crossing.webm",
+    "animatedPreview": "previews/summer-crossing.gif"
   },
   {
     "name": "Blue hour station",
@@ -210,7 +242,9 @@
     "preview": "previews/blue-hour-station.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/blue-hour-station.webm",
+    "animatedPreview": "previews/blue-hour-station.gif"
   },
   {
     "name": "Lantern street",
@@ -221,7 +255,9 @@
     "preview": "previews/lantern-street.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/lantern-street.webm",
+    "animatedPreview": "previews/lantern-street.gif"
   },
   {
     "name": "Neon highway",
@@ -233,7 +269,8 @@
     "width": 1920,
     "height": 1080,
     "license": "CC0-1.0",
-    "video": "live/neon-highway.webm"
+    "video": "live/neon-highway.webm",
+    "animatedPreview": "previews/neon-highway.gif"
   },
   {
     "name": "Pixel valley",
@@ -244,7 +281,9 @@
     "preview": "previews/pixel-valley.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/pixel-valley.webm",
+    "animatedPreview": "previews/pixel-valley.gif"
   },
   {
     "name": "Portal chamber",
@@ -255,7 +294,9 @@
     "preview": "previews/portal-chamber.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/portal-chamber.webm",
+    "animatedPreview": "previews/portal-chamber.gif"
   },
   {
     "name": "Arcade skyline",
@@ -266,7 +307,9 @@
     "preview": "previews/arcade-skyline.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/arcade-skyline.webm",
+    "animatedPreview": "previews/arcade-skyline.gif"
   },
   {
     "name": "Moonlit dungeon",
@@ -277,6 +320,8 @@
     "preview": "previews/moonlit-dungeon.jpg",
     "width": 1920,
     "height": 1080,
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "video": "live/moonlit-dungeon.webm",
+    "animatedPreview": "previews/moonlit-dungeon.gif"
   }
 ]
