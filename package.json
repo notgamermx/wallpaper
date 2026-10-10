@@ -1,0 +1,9 @@
+{
+  "name": "lumen-wallpapers",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "render": "node scripts/render.mjs"
+  }
+}
